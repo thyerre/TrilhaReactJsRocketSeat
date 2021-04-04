@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ESNext"], //Entende que esta usando o DOM (InputHTMLAttribute)
+    "allowJs": true, //para poder ter arquivos TS e JS
+    "jsx": "react-jsx", //define que esta usando o JSX do react para escrever HTML dentro TS
+    "noEmit": true, //
+    "strict": true, // mode strict do JS
+    "moduleResolution": "node", //Possibilidade de importar arquivos JSON
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"] //Onde o codigo da aplicação esta
+}

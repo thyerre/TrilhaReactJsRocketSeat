@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { RepositoryItem } from "./RepositoryItem";
+
 import './../styles/repositorys.scss'
 
 export function RepositoryList() {
@@ -38,10 +39,7 @@ export function RepositoryList() {
             </div>
 
             <ul>
-                {repositories.map(repository => {
-                    return <RepositoryItem key={repository.id} repository={repository}/> 
-                })}
-                
+                {repositories.map(repository =>  <RepositoryItem key={repository.id} repository={repository}/> )}
             </ul>
         </section>
     )
