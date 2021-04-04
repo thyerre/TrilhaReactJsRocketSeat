@@ -41,6 +41,7 @@ export function RepositoryList() {
     }
 
 // html
+
     return (
         <section className="repository-list">
             <div>
@@ -51,7 +52,9 @@ export function RepositoryList() {
             </div>
 
             <ul>
-                {repositories.map(repository =>  <RepositoryItem key={repository.id} repository={repository}/> )}
+                {repositories.map(repository =>  (
+                    <RepositoryItem key={repository.id} repository={repository} /> 
+                ))}
             </ul>
         </section>
     )

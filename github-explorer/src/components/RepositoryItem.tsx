@@ -1,3 +1,5 @@
+import { RepositoryCommits } from "./RepositoryCommits";
+
 interface RepositoryItemProps {
     repository: {
         name: string,
@@ -17,7 +19,7 @@ export function RepositoryItem({repository}:RepositoryItemProps) {
             <a href={repository.html_url}>
                 Acessar Repositórios
             </a>
-
+            <RepositoryCommits repositoryName={repository.name}/>
         </li>
     )
 }
