@@ -1,6 +1,8 @@
-import { ButtonSubimit, Container, Content, InputForm, TitleModal, ButtonClose } from "./styles";
+import { ButtonType, ButtonSubimit, Container, Content, InputForm, TitleModal, ButtonClose, TypeContainer } from "./styles";
 import Modal from 'react-modal';
 import closeImg from './../../assets/close.svg'
+import incomeImg from './../../assets/income.svg'
+import outcomeImg from './../../assets/outcome.svg'
 
 Modal.setAppElement('#root');
 interface NewTransactionModalOpenProps {
@@ -23,10 +25,26 @@ export function NewTransactionModal({ onIsNewTransactionModalOpen, onHandleClose
                 <ButtonClose type="button" onClick={onHandleCloseNewTransactionModal}>
                     <img src={closeImg} alt=""/>
                 </ButtonClose>
+
                 <TitleModal>Cadastrar Transação</TitleModal>
+
                 <InputForm type="text" placeholder="Titulo"/>
                 <InputForm type="number" placeholder="valor"/>
+
+                <TypeContainer>
+                    <ButtonType type="button">
+                        <img src={incomeImg} alt=""/>
+                        <span>Entrada</span>
+                    </ButtonType>
+                    <ButtonType type="button">
+                        <img src={outcomeImg} alt=""/>
+                        <span>Saída</span>
+                    </ButtonType>
+
+                </TypeContainer>
+
                 <InputForm type="text" placeholder="Categoria"/>
+
                 <ButtonSubimit type="submit" > Cadastrar</ButtonSubimit>
 
             </Content>
