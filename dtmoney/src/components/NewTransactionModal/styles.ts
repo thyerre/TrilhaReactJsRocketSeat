@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { darken } from "polished";
+import { darken, transparentize } from "polished";
 
 export const Container = styled.div``;
 
@@ -72,14 +72,22 @@ export const TypeContainer = styled.div`
 
 interface ButtonTypeProps {
   isActive: boolean;
+  activeColor: "green" | "red";
 }
+
+const colors = {
+  green: "#33cc95",
+  red: "#e52e4d",
+};
 
 export const ButtonType = styled.button<ButtonTypeProps>`
   height: 4rem;
   border: 1px solid #d7d7d7;
   border-radius: 0.25rem;
 
-  background: ${({ isActive }) => (isActive ? "#ccc" : "transparent")};
+  background: ${({ isActive, activeColor }) =>
+    isActive ? transparentize(0.9, colors[activeColor]) : "transparent"};
+
   display: flex;
   align-items: center;
   justify-content: center;
