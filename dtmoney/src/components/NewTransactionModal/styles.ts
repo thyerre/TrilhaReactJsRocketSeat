@@ -70,12 +70,16 @@ export const TypeContainer = styled.div`
   gap: 0.5rem;
 `;
 
-export const ButtonType = styled.button`
+interface ButtonTypeProps {
+  isActive: boolean;
+}
+
+export const ButtonType = styled.button<ButtonTypeProps>`
   height: 4rem;
   border: 1px solid #d7d7d7;
   border-radius: 0.25rem;
 
-  background: transparent;
+  background: ${({ isActive }) => (isActive ? "#ccc" : "transparent")};
   display: flex;
   align-items: center;
   justify-content: center;

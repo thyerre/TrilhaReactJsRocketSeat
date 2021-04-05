@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import closeImg from './../../assets/close.svg'
 import incomeImg from './../../assets/income.svg'
 import outcomeImg from './../../assets/outcome.svg'
+import { useState } from "react";
 
 Modal.setAppElement('#root');
 interface NewTransactionModalOpenProps {
@@ -11,6 +12,7 @@ interface NewTransactionModalOpenProps {
 }
 
 export function NewTransactionModal({ onIsNewTransactionModalOpen, onHandleCloseNewTransactionModal }: NewTransactionModalOpenProps) {
+    const [type, setType] = useState('deposit');
 
     return (
         <Container>
@@ -32,11 +34,21 @@ export function NewTransactionModal({ onIsNewTransactionModalOpen, onHandleClose
                 <InputForm type="number" placeholder="valor"/>
 
                 <TypeContainer>
-                    <ButtonType type="button">
+
+                    <ButtonType 
+                        type="button"
+                        onClick={() => {setType('deposit')}}
+                        isActive={type === 'deposit'}
+                    >
                         <img src={incomeImg} alt=""/>
                         <span>Entrada</span>
                     </ButtonType>
-                    <ButtonType type="button">
+
+                    <ButtonType 
+                        type="button" 
+                        onClick={() => {setType('withdraw')}}
+                        isActive={type === 'withdraw'}
+                    >
                         <img src={outcomeImg} alt=""/>
                         <span>Saída</span>
                     </ButtonType>
