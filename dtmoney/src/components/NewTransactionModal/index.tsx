@@ -36,7 +36,8 @@ export function NewTransactionModal({ onIsNewTransactionModalOpen, onHandleClose
             createAt: new Date()
         }
 
-        saveTransaction(data)
+        saveTransaction(data);
+        onHandleCloseNewTransactionModal();
 
     }
 
