@@ -1,11 +1,13 @@
-import { createServer } from "miragejs";
+import { createServer, Model } from "miragejs";
 
 export function StartServerAPI() {
   createServer({
-    routes() {
-      this.namespace = "api";
-      this.get("/transactions", () => {
-        return [
+    models: {
+      transaction: Model,
+    },
+    seeds(server) {
+      server.db.loadData({
+        transactions: [
           {
             id: 1,
             title: "transation 1",
@@ -13,21 +15,21 @@ export function StartServerAPI() {
             category: "Food",
             createAt: new Date(),
           },
-          {
-            id: 2,
-            title: "transation 2",
-            amount: 400,
-            category: "Food",
-            createAt: new Date(),
-          },
-          {
-            id: 3,
-            title: "transation 3",
-            amount: 6500,
-            category: "Fun",
-            createAt: new Date(),
-          },
-        ];
+        ],
+      });
+    },
+
+    routes() {
+      this.namespace = "api";
+
+      this.get("/transactions", () => {
+        return this.schema.all("transaction");
+      });
+
+      this.post("/transactions", (schema, request) => {
+        const data = JSON.parse(request.requestBody);
+
+        return schema.create("transaction", data);
       });
     },
   });
