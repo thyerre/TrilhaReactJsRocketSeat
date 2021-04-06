@@ -1,6 +1,5 @@
 import { ButtonType, ButtonSubimit, Container, Content, InputForm, TitleModal, ButtonClose, TypeContainer } from "./styles";
 import { FormEvent, useContext, useState } from "react";
-import { api } from "../../services/api";
 import { TransactionsContext } from "../../TransactionsContext";
 import Modal from 'react-modal';
 
@@ -14,13 +13,6 @@ interface NewTransactionModalOpenProps {
     onHandleCloseNewTransactionModal: () => void
 }
 
-// interface Transaction {
-//     type: string,
-//     value: number,
-//     title: string,
-//     category: string
-// }
-
 export function NewTransactionModal({ onIsNewTransactionModalOpen, onHandleCloseNewTransactionModal }: NewTransactionModalOpenProps) {
     const { createNewTransaction } = useContext(TransactionsContext)
 
@@ -30,21 +22,26 @@ export function NewTransactionModal({ onIsNewTransactionModalOpen, onHandleClose
     const [category, setCategory] = useState('');
 
     
-    function handleCreateNewTransaction(event: FormEvent) {
+    async function handleCreateNewTransaction(event: FormEvent) {
         event.preventDefault();
         
-        createNewTransaction({
+        await createNewTransaction({
             title,
             amount,
             category,
             type
         })
-        
+        clearFormModal();
+
         onHandleCloseNewTransactionModal();
-
     }
-
-
+    
+    function clearFormModal() {
+        setType('deposit');
+        setAmount(0);
+        setTitle('');
+        setCategory('');
+    }
 
     return (
         <Container>
