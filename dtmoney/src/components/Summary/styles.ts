@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+interface strongValueProps {
+  total: number;
+}
+
+export const Container = styled.div<strongValueProps>`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
@@ -13,7 +17,18 @@ export const Container = styled.div`
     color: var(--text-title);
 
     &.highlight-background {
-      background: var(--green);
+      background: ${({ total }) => {
+        console.log(total);
+        if (total < -300) {
+          return "#E52e4d";
+        }
+
+        if (total < 0 && total > -300) {
+          return "#ff4700";
+        }
+
+        return "#33cc95";
+      }};
       color: #fff;
     }
   }
@@ -30,5 +45,9 @@ export const Container = styled.div`
     font-size: 2rem;
     font-weight: 500;
     line-height: 3rem;
+
+    &.up {
+      color: var(--red);
+    }
   }
 `;

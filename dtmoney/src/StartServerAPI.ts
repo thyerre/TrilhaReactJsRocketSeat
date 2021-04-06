@@ -13,6 +13,7 @@ export function StartServerAPI() {
             title: "transation 1",
             amount: 1000,
             category: "Food",
+            type: "deposit",
             createAt: new Date(),
           },
         ],

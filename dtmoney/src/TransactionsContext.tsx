@@ -33,7 +33,10 @@ export function TransactionsProvider({children}:TransactionsProviderProps) {
     }, [])
 
     async function createNewTransaction(newTransaction: TransactionInput) {
-        const form = {...newTransaction, createAt: new Date()}
+        const form = { 
+            ...newTransaction, 
+            createAt: new Date()
+        }
 
         return await saveTransaction(form);
     }

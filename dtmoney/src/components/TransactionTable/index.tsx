@@ -28,7 +28,7 @@ export function TransactionTable() {
                     {transactions.map((item) => (
                          <tr key={item.id}>
                             <td>{item.title}</td>
-                            <td className="deposit">
+                            <td className={ item.type === 'deposit' ? 'deposit' : 'withdraw' }>
                                 {new Intl.NumberFormat('pt-BR', {
                                     style: 'currency',
                                     currency: 'BRL'
