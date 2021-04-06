@@ -12,9 +12,7 @@ interface Transaction {
 }
 
 export function TransactionTable() {
-    const transactions = useContext(TransactionsContext)
-    console.log(transactions)
-
+    const { transactions } = useContext(TransactionsContext)
     return (
         <Container>
             <table>

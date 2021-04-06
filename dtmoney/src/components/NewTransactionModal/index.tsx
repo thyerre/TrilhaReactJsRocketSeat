@@ -1,10 +1,12 @@
 import { ButtonType, ButtonSubimit, Container, Content, InputForm, TitleModal, ButtonClose, TypeContainer } from "./styles";
+import { FormEvent, useContext, useState } from "react";
+import { api } from "../../services/api";
+import { TransactionsContext } from "../../TransactionsContext";
 import Modal from 'react-modal';
+
 import closeImg from './../../assets/close.svg'
 import incomeImg from './../../assets/income.svg'
 import outcomeImg from './../../assets/outcome.svg'
-import { FormEvent, useState } from "react";
-import { api } from "../../services/api";
 
 Modal.setAppElement('#root');
 interface NewTransactionModalOpenProps {
@@ -12,38 +14,37 @@ interface NewTransactionModalOpenProps {
     onHandleCloseNewTransactionModal: () => void
 }
 
-interface Transaction {
-    type: string,
-    value: number,
-    title: string,
-    category: string
-}
+// interface Transaction {
+//     type: string,
+//     value: number,
+//     title: string,
+//     category: string
+// }
 
 export function NewTransactionModal({ onIsNewTransactionModalOpen, onHandleCloseNewTransactionModal }: NewTransactionModalOpenProps) {
+    const { createNewTransaction } = useContext(TransactionsContext)
+
     const [type, setType] = useState('deposit');
-    const [value, setValue] = useState(0);
+    const [amount, setAmount] = useState(0);
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
 
+    
     function handleCreateNewTransaction(event: FormEvent) {
         event.preventDefault();
-
-        const data = {
-            type,
-            value,
+        
+        createNewTransaction({
             title,
+            amount,
             category,
-            createAt: new Date()
-        }
-
-        saveTransaction(data);
+            type
+        })
+        
         onHandleCloseNewTransactionModal();
 
     }
 
-    function saveTransaction(form: Transaction) {
-        api.post('transactions', form)
-    }
+
 
     return (
         <Container>
@@ -71,8 +72,8 @@ export function NewTransactionModal({ onIsNewTransactionModalOpen, onHandleClose
                 <InputForm 
                     type="number" 
                     placeholder="valor" 
-                    value={value} 
-                    onChange={({target}) => (setValue(Number(target.value)))}
+                    value={amount} 
+                    onChange={({target}) => (setAmount(Number(target.value)))}
                 />
 
                 <TypeContainer>
