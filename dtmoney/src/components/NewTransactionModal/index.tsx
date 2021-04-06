@@ -1,11 +1,11 @@
 import { ButtonType, ButtonSubimit, Container, Content, InputForm, TitleModal, ButtonClose, TypeContainer } from "./styles";
-import { FormEvent, useContext, useState } from "react";
-import { TransactionsContext } from "../../TransactionsContext";
+import { FormEvent, useState } from "react";
 import Modal from 'react-modal';
 
 import closeImg from './../../assets/close.svg'
 import incomeImg from './../../assets/income.svg'
 import outcomeImg from './../../assets/outcome.svg'
+import { useTransactions } from "../../hooks/useTransactions";
 
 Modal.setAppElement('#root');
 interface NewTransactionModalOpenProps {
@@ -14,7 +14,7 @@ interface NewTransactionModalOpenProps {
 }
 
 export function NewTransactionModal({ onIsNewTransactionModalOpen, onHandleCloseNewTransactionModal }: NewTransactionModalOpenProps) {
-    const { createNewTransaction } = useContext(TransactionsContext)
+    const { createNewTransaction } = useTransactions()
 
     const [type, setType] = useState('deposit');
     const [amount, setAmount] = useState(0);

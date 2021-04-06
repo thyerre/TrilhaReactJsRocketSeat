@@ -18,7 +18,6 @@ export const Container = styled.div<strongValueProps>`
 
     &.highlight-background {
       background: ${({ total }) => {
-        console.log(total);
         if (total < -300) {
           return "#E52e4d";
         }
